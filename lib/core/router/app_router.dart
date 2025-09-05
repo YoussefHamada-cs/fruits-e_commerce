@@ -1,6 +1,7 @@
 
 import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/router/app_transitions.dart';
+import 'package:fruits_hub/features/on_boarding/presentation/views/on_boarding.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,17 +18,18 @@ class AppRouter {
           context: context,
           state: state,
           child: const SplashView(),
+       
         ),
       ),
-      // GoRoute(
-      //   path: AppRoutes.onborading,
-      //   name: AppRoutes.onborading,
-      //   pageBuilder: (context, state) => AppTransitions.slideFromLeft(
-      //     context: context,
-      //     state: state,
-      //     child: const OnboradingView(),
-      //   ),
-      // ),
+      GoRoute(
+        path: AppRoutes.onboarding,
+        name: AppRoutes.onboarding,
+        pageBuilder: (context, state) => AppTransitions.slideFromLeft(
+          context: context,
+          state: state,
+          child: const OnBoardingView(),
+        ),
+       ),
       // GoRoute(
       //   path: AppRoutes.login,
       //   name: AppRoutes.login,
