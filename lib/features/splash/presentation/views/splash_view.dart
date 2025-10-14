@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/router/app_routes.dart';
+import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
 import 'package:fruits_hub/features/splash/presentation/views/widgets/splash_view_body.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -12,14 +14,31 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   static const splashDuration = Duration(seconds: 3);
 
-  @override
+   @override
   void initState() {
     super.initState();
+    _navigateAfterSplash();
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+  Future<void> _navigateAfterSplash() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // تأكد من فتح الصندوق
+      await Hive.openBox('appBox');
+
+      // حمّل بيانات الخدمة
+      final onboardingService = OnboardingService();
+      await onboardingService.initialize();
+
       Future.delayed(splashDuration, () {
         if (!mounted) return;
-        context.pushReplacementNamed(AppRoutes.onboarding);
+
+        if (onboardingService.onboardingCompleted) {
+          // المستخدم شاف الـ Onboarding قبل كده → روح للـ Login
+          context.pushReplacementNamed(AppRoutes.login);
+        } else {
+          // أول مرة → روح لـ Onboarding
+          context.pushReplacementNamed(AppRoutes.onboarding);
+        }
       });
     });
   }

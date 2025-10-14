@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/router/app_router.dart';
+import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 
-void main() {
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+  // تهيئة Hive
+  await Hive.initFlutter();
+  await Hive.openBox('appBox');
+
+  // تهيئة خدمة الشاشة التعريفية
+  await OnboardingService().initialize();
+
   runApp(const FruitsHub());
 }
 
