@@ -1,7 +1,7 @@
 
 import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/router/app_transitions.dart';
-import 'package:fruits_hub/features/on_boarding/presentation/views/on_boarding.dart';
+import 'package:fruits_hub/features/onBording/presention/views/onbording_view.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
