@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/router/app_router.dart';
+import 'package:fruits_hub/core/theme/app_theme.dart';
 import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -25,6 +26,7 @@ class FruitsHub extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
+      theme: AppTheme.theme,
      
     );
   }
