@@ -27,4 +27,7 @@ class AppStrings {
   static const String facebookLogin = 'تسجيل الدخول بواسطة فيسبوك';
   static const String googleLogin = 'تسجيل الدخول بواسطة جوجل';
   static const String appleLogin = 'تسجيل الدخول بواسطة آبل';
+  static const String fullNameError = 'من فضلك ادخل الاسم كامل';
+  static const String emailError = 'من فضلك ادخل البريد الالكتروني';
+  static const String passwordError = 'من فضلك ادخل كلمة المرور';
 }

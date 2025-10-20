@@ -24,7 +24,7 @@ class LoginViewBody extends StatelessWidget {
             hintText: AppStrings.email,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your email';
+                return AppStrings.emailError;
               }
               return null;
             },
@@ -40,7 +40,7 @@ class LoginViewBody extends StatelessWidget {
             hintText: AppStrings.password,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your password';
+                return AppStrings.passwordError;
               }
               return null;
             },
