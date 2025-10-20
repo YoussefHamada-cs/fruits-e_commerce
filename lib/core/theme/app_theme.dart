@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 //import 'package:fruits_hub/core/utils/app_colors.dart';
 
-
 class AppTheme {
-  static ThemeData get lightTheme {
+  static ThemeData get theme {
     return ThemeData(
-      fontFamily: 'Cairo',
       useMaterial3: true,
       brightness: Brightness.light,
-    
+      fontFamily: 'Cairo',
       appBarTheme: const AppBarTheme(
-
         elevation: 0,
         toolbarHeight: 65,
         shape: RoundedRectangleBorder(
@@ -20,48 +17,18 @@ class AppTheme {
           ),
         ),
       ),
-     
+
       textTheme: const TextTheme(
-        titleLarge: TextStyle(
-          fontSize: 23,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Cairo',
-        ),
-        titleMedium: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Cairo',
-        ),
-        titleSmall: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Cairo',
-        ),
-        displayMedium: TextStyle(
-          fontFamily: 'Cairo',
-          fontSize: 26,
-          fontWeight: FontWeight.normal,
-        ),
-        displaySmall: TextStyle(
-            fontFamily: 'Cairo',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          fontFamily: 'Cairo',
-        ),
-        bodyMedium: TextStyle(
-          
-          fontSize: 15,
-          fontFamily: 'Cairo',
-        ),
-        bodySmall: TextStyle(
-          fontSize: 11,
-          fontFamily: 'Cairo',
-          fontWeight: FontWeight.normal,
-        ),
+        titleLarge: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+        titleMedium: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+        titleSmall: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.normal),
+        displaySmall: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        bodyMedium: TextStyle(fontSize: 15),
+        bodySmall: TextStyle(fontSize: 11, fontWeight: FontWeight.normal),
       ),
+
       // inputDecorationTheme: InputDecorationTheme(
       //   filled: true,
       //   fillColor: AppColors.inputBackgroundLight,
@@ -86,8 +53,6 @@ class AppTheme {
       //     vertical: 12,
       //   ),
       // ),
-     
-    
     );
   }
 }

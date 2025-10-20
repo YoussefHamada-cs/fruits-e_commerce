@@ -1,6 +1,7 @@
 
 import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/router/app_transitions.dart';
+import 'package:fruits_hub/features/auth/presention/views/login_view.dart';
 import 'package:fruits_hub/features/onBording/presention/views/onbording_view.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
@@ -30,19 +31,16 @@ class AppRouter {
           child: const OnBoardingView(),
         ),
        ),
-      // GoRoute(
-      //   path: AppRoutes.login,
-      //   name: AppRoutes.login,
-      //   pageBuilder: (context, state) => AppTransitions.size(
-      //     context: context,
-      //     state: state,
-      //     child: BlocProvider(
-      //       create: (context) => sl<LoginCubit>(),
-      //       child: const LoginView(),
-      //     ),
-      //   ),
-      // ),
-      // // size
+      GoRoute(
+        path: AppRoutes.login,
+        name: AppRoutes.login,
+        pageBuilder: (context, state) => AppTransitions.size(
+          context: context,
+          state: state,
+          child: const LoginView(),
+        ),
+      ),
+      // size
       // GoRoute(
       //   path: AppRoutes.signUp,
       //   name: AppRoutes.signUp,
