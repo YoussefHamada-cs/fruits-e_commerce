@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fruits_hub/features/onBording/presention/widgets/next_button.dart';
+import 'package:fruits_hub/core/router/app_routes.dart';
+import 'package:fruits_hub/core/utils/app_strings.dart';
+import 'package:fruits_hub/core/widgets/custom_button.dart';
+import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
 import 'package:fruits_hub/features/onBording/presention/widgets/skip_button.dart';
-
+import 'package:go_router/go_router.dart';
 import '../../data/onboarding_data.dart';
 import '../../data/onboarding_item.dart';
 import 'onboarding_page.dart';
@@ -93,7 +96,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                     // Page indicators
                     Positioned(
                       bottom: isPortrait
-                          ? bottomPadding + 60
+                          ? bottomPadding + 70
                           : bottomPadding + 10,
                       left: 0,
                       right: 0,
@@ -107,7 +110,15 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                             bottom: bottomPadding,
                             left: sidePadding,
                             right: sidePadding,
-                            child: NextButton(),
+                            child: CustomButton(
+                              text: AppStrings.start,
+                              onPressed: () async {
+                                // حفظ حالة مشاهدة الـ Onboarding
+                                await OnboardingService().completeOnboarding();
+                                // الانتقال للرئيسية
+                                context.pushReplacementNamed(AppRoutes.login);
+                              },
+                            ),
                           )
                         : Container(),
                   ],
