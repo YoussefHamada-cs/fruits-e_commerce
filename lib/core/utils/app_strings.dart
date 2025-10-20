@@ -14,17 +14,17 @@ class AppStrings {
   static const String skip = 'تخطي';
 
   // ==================== Authentication ====================
-  static const String loggedInSuccessfully = 'Logged in successfully';
-  static const String loggedOutSuccessfully = 'Logged out successfully';
-  static const String loggedInFailed = 'Logged in failed';
-  static const String loggedOutFailed = 'Logged out failed';
-  static const String signIn = 'Sign In';
-  static const String signUp = 'Sign Up';
-  static const String forgotPassword = 'Forgot Password?';
-  static const String resetPassword = 'Reset Password';
-  static const String email = 'Email';
-  static const String password = 'Password';
-  static const String confirmPassword = 'Confirm Password';
-
-  static const String newsmarkedBox = 'newsmarkedBox';
+ 
+  static const String login = 'تسجيل الدخول';
+  static const String signUp = 'تسجيل حساب جديد';
+  static const String forgotPassword = 'هل نسيت كلمة المرور؟';
+  static const String resetPassword = 'إعادة تعيين كلمة المرور';
+  static const String email = 'البريد الإلكتروني';
+  static const String password = 'كلمة المرور';
+  static const String confirmPassword = 'تأكيد كلمة المرور';
+  static const String createAccount = 'قم بإنشاء حساب ';
+  static const String haveAnAccount = 'هل لديك حساب؟';
+  static const String facebookLogin = 'تسجيل الدخول بواسطة فيسبوك';
+  static const String googleLogin = 'تسجيل الدخول بواسطة جوجل';
+  static const String appleLogin = 'تسجيل الدخول بواسطة آبل';
 }

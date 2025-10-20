@@ -7,4 +7,7 @@ class AppImages {
   static const String pineapple = 'assets/images/pineapple-cuate 1.svg';
   static const String backgroundImage1 = 'assets/images/backgroundimage1.svg';
   static const String backgroundImage2 = 'assets/images/backgroundimage2.svg';
+  static const String googleIcon= 'assets/images/google_Icon.svg';
+  static const String facebookIcon= 'assets/images/facebook_Icon.svg';
+  static const String appleIcon= 'assets/images/apple_Icon.svg';
 }
