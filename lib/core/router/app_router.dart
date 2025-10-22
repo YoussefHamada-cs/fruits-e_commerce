@@ -2,6 +2,7 @@
 import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/router/app_transitions.dart';
 import 'package:fruits_hub/features/auth/presention/views/login_view.dart';
+import 'package:fruits_hub/features/auth/presention/views/signup_view.dart';
 import 'package:fruits_hub/features/onBording/presention/views/onbording_view.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
@@ -41,18 +42,15 @@ class AppRouter {
         ),
       ),
       // size
-      // GoRoute(
-      //   path: AppRoutes.signUp,
-      //   name: AppRoutes.signUp,
-      //   pageBuilder: (context, state) => AppTransitions.size(
-      //     context: context,
-      //     state: state,
-      //     child: BlocProvider(
-      //       create: (context) => sl<RegisterCubit>(),
-      //       child: const SignUpView(),
-      //     ),
-      //   ),
-      // ),
+      GoRoute(
+        path: AppRoutes.signUp,
+        name: AppRoutes.signUp,
+        pageBuilder: (context, state) => AppTransitions.size(
+          context: context,
+          state: state,
+          child: const SignupView(),
+        ),
+      ),
 
       // GoRoute(
       //   path: AppRoutes.forgotPassword,
@@ -75,15 +73,15 @@ class AppRouter {
       //     child: HomeView(),
       //   ),
       // ),
-      /* GoRoute(
-        path: AppRoutes.settings,
-        name: AppRoutes.settings,
-        pageBuilder: (context, state) => AppTransitions.slideFromRight(
-          context: context,
-          state: state,
-          child: SettingsView(),
-        ),
-      ),*/
+      // GoRoute(
+      //   path: AppRoutes.settings,
+      //   name: AppRoutes.settings,
+      //   pageBuilder: (context, state) => AppTransitions.slideFromRight(
+      //     context: context,
+      //     state: state,
+      //     child: SettingsView(),
+      //   ),
+      // ),
     ],
   );
 }

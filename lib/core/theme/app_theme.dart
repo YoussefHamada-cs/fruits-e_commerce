@@ -25,7 +25,7 @@ class AppTheme {
         displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.normal),
         displaySmall: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-        bodyMedium: TextStyle(fontSize: 15),
+        bodyMedium: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
         bodySmall: TextStyle(fontSize: 11, fontWeight: FontWeight.normal),
       ),
 

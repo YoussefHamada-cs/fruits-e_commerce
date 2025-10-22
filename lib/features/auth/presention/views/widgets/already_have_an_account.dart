@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:go_router/go_router.dart';
 
-class DontHaveAnAccount extends StatelessWidget {
-  const DontHaveAnAccount({
-    super.key,
-    required this.textTheme,
-  });
+class AlreadyHaveAnAccount extends StatelessWidget {
+  const AlreadyHaveAnAccount({super.key, required this.textTheme});
 
   final TextTheme textTheme;
 
@@ -19,18 +15,16 @@ class DontHaveAnAccount extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            context.pushNamed(AppRoutes.signUp);
+            context.pop();
           },
           child: Text(
-            AppStrings.createAccount,
+            AppStrings.login,
             style: textTheme.bodyLarge!.copyWith(color: AppColors.green),
           ),
         ),
         Text(
-          AppStrings.haveAnAccount,
-          style: textTheme.bodyLarge!.copyWith(
-            color: AppColors.textSecondary,
-          ),
+          AppStrings.alreadyHaveAccount,
+          style: textTheme.bodyLarge!.copyWith(color: AppColors.textSecondary),
         ),
       ],
     );

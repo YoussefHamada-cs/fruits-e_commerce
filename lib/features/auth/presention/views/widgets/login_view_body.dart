@@ -49,7 +49,7 @@ class LoginViewBody extends StatelessWidget {
             onPressed: () {},
             child: Text(
               AppStrings.forgotPassword,
-              style: textTheme.bodyLarge!.copyWith(color: AppColors.green),
+              style: textTheme.bodyLarge!.copyWith(color: AppColors.lightGreen),
             ),
           ),
           Center(
