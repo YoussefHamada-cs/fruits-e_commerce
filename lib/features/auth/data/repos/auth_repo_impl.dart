@@ -12,7 +12,7 @@ class AuthRepoImpl implements AuthRepo {
   final FirebaseAuthService firebaseAuthService;
   // final GoogleSignIn _googleSignIn;
 
-  AuthRepoImpl(this.firebaseAuthService);
+  AuthRepoImpl({ required this.firebaseAuthService});
 
 
 
