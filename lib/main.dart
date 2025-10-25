@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/router/app_router.dart';
+import 'package:fruits_hub/core/service/get_it_sevice.dart';
 import 'package:fruits_hub/core/theme/app_theme.dart';
 import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -7,16 +8,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // تهيئة Hive
   await Hive.initFlutter();
   await Hive.openBox('appBox');
-
+  setupGetIt();
   // تهيئة خدمة الشاشة التعريفية
   await OnboardingService().initialize();
-   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const FruitsHub());
 }
 
@@ -30,7 +29,6 @@ class FruitsHub extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       theme: AppTheme.theme,
-     
     );
   }
 }
