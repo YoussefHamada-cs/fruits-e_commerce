@@ -19,9 +19,7 @@ class SignupViewBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return SingleChildScrollView(
-          child: SignupForm(isLoading: state is CreateUserLoading),
-        );
+        return SignupForm(isLoading: state is CreateUserLoading);
       },
     );
   }
