@@ -46,4 +46,5 @@ class AppStrings {
   static const String somethingWentWrong = 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.';
   static const String emailAlreadyInUse = 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.';
   static const String weakPassword = 'الرقم السري ضعيف جداً.';
+  static const String loginSuccess = 'تم تسجيل الدخول بنجاح.';
 }
