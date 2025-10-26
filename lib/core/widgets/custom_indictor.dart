@@ -9,12 +9,14 @@ class CustomIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 25,
-        width: 25,
-        child: const CircularProgressIndicator(
-          color: AppColors.green,
+    return Center(
+      child: SizedBox(
+          height: 25,
+          width: 25,
+          child: const CircularProgressIndicator(
+            color: AppColors.green,
+          ),
         ),
-      );
+    );
   }
 }
