@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/router/app_router.dart';
+import 'package:fruits_hub/core/service/bloc_observer.dart';
 import 'package:fruits_hub/core/service/get_it_sevice.dart';
 import 'package:fruits_hub/core/theme/app_theme.dart';
 import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
@@ -13,6 +15,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('appBox');
   setupGetIt();
+  Bloc.observer = AppBlocObserver();
   // تهيئة خدمة الشاشة التعريفية
   await OnboardingService().initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
