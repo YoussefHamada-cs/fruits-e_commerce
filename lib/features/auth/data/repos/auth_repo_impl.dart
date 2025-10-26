@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 import 'package:fruits_hub/core/errors/failures.dart';
 import 'package:fruits_hub/core/service/firebase_auth_service.dart';
+import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entites/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
@@ -31,7 +32,7 @@ class AuthRepoImpl implements AuthRepo {
     } on CustomException catch (e) {
       return Left( ServerFailure ( e.message));
     }catch(e){
-       return Left( ServerFailure ('لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+       return Left( ServerFailure (AppStrings.somethingWentWrong));
     }
 
   }
@@ -49,7 +50,7 @@ class AuthRepoImpl implements AuthRepo {
     } on CustomException catch (e) {
       return Left( ServerFailure ( e.message));
     }catch(e){
-       return Left( ServerFailure ('لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+       return Left( ServerFailure (AppStrings.somethingWentWrong));
     }
     
   }

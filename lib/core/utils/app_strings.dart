@@ -39,4 +39,11 @@ class AppStrings {
   static const String termsAndConditionsError = 'يجب الموافقة على الشروط والأحكام أولاً';
 
   static const String accountCreatedSuccessfully = 'تم إنشاء الحساب بنجاح';
+  static const String userNotFound = 'لم يتم العثور على مستخدم بهذا البريد الالكتروني.';
+  static const String wrongPassword = 'كلمة المرور التي ادخلتها غير صحيحة.';
+  static const String emailInvalid = 'البريد الالكتروني غير صالح.';
+  static const String networkRequestFailed = 'تأكد من اتصالك بالانترنت.';
+  static const String somethingWentWrong = 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.';
+  static const String emailAlreadyInUse = 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.';
+  static const String weakPassword = 'الرقم السري ضعيف جداً.';
 }
