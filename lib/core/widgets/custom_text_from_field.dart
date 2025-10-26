@@ -8,12 +8,13 @@ class CustomTextFormField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.validator,
+    this.onSaved,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.suffixIcon,
     this.inputFormatters,
   });
-
+  final void Function(String?)? onSaved;
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?) validator;
@@ -32,7 +33,7 @@ class CustomTextFormField extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: TextFormField(
           controller: controller,
-
+          onSaved: onSaved,
           keyboardType: keyboardType,
           obscureText: obscureText,
 
