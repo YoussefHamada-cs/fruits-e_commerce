@@ -36,4 +36,7 @@ class AppStrings {
   static const String termsAndConditions =
       'من خلال إنشاء حساب ، فإنك توافق على';
   static const String termsAndConditionsLink = ' الشروط والأحكام الخاصة بنا';
+  static const String termsAndConditionsError = 'يجب الموافقة على الشروط والأحكام أولاً';
+
+  static const String accountCreatedSuccessfully = 'تم إنشاء الحساب بنجاح';
 }
