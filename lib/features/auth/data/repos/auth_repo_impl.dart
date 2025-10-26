@@ -35,20 +35,32 @@ class AuthRepoImpl implements AuthRepo {
     }
 
   }
-
-  @override
-  Future<Either<Failure, UserEntity>> loginWithApple() {
-    // TODO: implement loginWithApple
-    throw UnimplementedError();
-  }
-
   @override
   Future<Either<Failure, UserEntity>> loginWithEmailAndPassword(
     String email,
     String password,
-  ) {
-    throw UnimplementedError();
+  ) async {
+    try {
+      var user = await firebaseAuthService.loginWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return Right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      return Left( ServerFailure ( e.message));
+    }catch(e){
+       return Left( ServerFailure ('لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+    }
+    
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> loginWithApple() {
+    throw UnimplementedError();
+    
+  }
+
+  
 
   @override
   Future<Either<Failure, UserEntity>> loginWithFacebook() {
