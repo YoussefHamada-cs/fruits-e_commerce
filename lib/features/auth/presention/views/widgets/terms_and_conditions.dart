@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 
-class TermsAndConditions extends StatefulWidget {
-  const TermsAndConditions({super.key, required this.textTheme});
-
+class TermsAndConditions extends StatelessWidget {
   final TextTheme textTheme;
+  final bool isChecked;
+  final ValueChanged<bool?> onChanged;
 
-  @override
-  State<TermsAndConditions> createState() => _TermsAndConditionsState();
-}
-
-class _TermsAndConditionsState extends State<TermsAndConditions> {
-  bool isChecked = false;
+  const TermsAndConditions({
+    super.key,
+    required this.textTheme,
+    required this.isChecked,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +30,7 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6.0),
               ),
-              onChanged: (value) {
-                setState(() {
-                  isChecked = value!;
-                });
-              },
+              onChanged: onChanged,
               activeColor: AppColors.green,
               checkColor: Colors.white,
             ),
@@ -45,18 +41,18 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
                 children: [
                   TextSpan(
                     text: AppStrings.termsAndConditions,
-                    style: widget.textTheme.bodyMedium!.copyWith(
+                    style: textTheme.bodyMedium!.copyWith(
                       color: AppColors.textSecondary,
                     ),
                   ),
                   TextSpan(
                     text: AppStrings.termsAndConditionsLink,
-                    style: widget.textTheme.bodyMedium!.copyWith(
+                    style: textTheme.bodyMedium!.copyWith(
                       color: AppColors.green,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                      
+                        // تقدر هنا تفتح صفحة الشروط
                       },
                   ),
                 ],

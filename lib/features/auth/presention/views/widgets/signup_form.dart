@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/helper/custom_show_snack_bar.dart';
+import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:fruits_hub/features/auth/presention/cubits/create_user/create_user_cubit.dart';
 import 'package:fruits_hub/features/auth/presention/views/widgets/already_have_an_account.dart';
 import 'package:fruits_hub/features/auth/presention/views/widgets/signup_text_fields.dart';
@@ -23,6 +25,7 @@ class _SignupFormState extends State<SignupForm> {
   final passwordController = TextEditingController();
 
   late String name, email, password;
+  bool isChecked = false; // ✅ متغير للتحقق من الموافقة على الشروط
 
   @override
   void dispose() {
@@ -32,22 +35,10 @@ class _SignupFormState extends State<SignupForm> {
     super.dispose();
   }
 
-  void _submit(BuildContext context) {
-    if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
-      context
-          .read<CreateUserCubit>()
-          .createUserWithEmailAndPassword(email, password, name);
-    } else {
-      setState(() {
-        autovalidateMode = AutovalidateMode.always;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -62,11 +53,36 @@ class _SignupFormState extends State<SignupForm> {
               onSaveEmail: (v) => email = v!,
               onSavePassword: (v) => password = v!,
             ),
-            TermsAndConditions(textTheme: textTheme),
+            TermsAndConditions(
+              textTheme: textTheme,
+              isChecked: isChecked,
+              onChanged: (value) {
+                setState(() {
+                  isChecked = value!;
+                });
+              },
+            ),
             const SizedBox(height: 30),
             SignupButtonSection(
               isLoading: widget.isLoading,
-              onPressed: () => _submit(context),
+              onPressed: () {
+                // ✅ التحقق من الموافقة على الشروط
+    if (!isChecked) {
+      customShowSnackBar(context, AppStrings.termsAndConditionsError);
+      return;
+    }
+
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      context
+          .read<CreateUserCubit>()
+          .createUserWithEmailAndPassword(email, password, name);
+    } else {
+      setState(() {
+        autovalidateMode = AutovalidateMode.always;
+      });
+    }
+              }
             ),
             const SizedBox(height: 26),
             AlreadyHaveAnAccount(textTheme: textTheme),
