@@ -76,8 +76,16 @@ class AuthRepoImpl implements AuthRepo {
   
 
   @override
-  Future<Either<Failure, UserEntity>> loginWithFacebook() {
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> loginWithFacebook() async {
+    try {
+      final user = await firebaseAuthService.logInWithFacebook();
+      return Right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure(AppStrings.somethingWentWrong));
+    }
+   
   }
 
  
