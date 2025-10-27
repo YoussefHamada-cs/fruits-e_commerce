@@ -1,4 +1,4 @@
-// lib/feature/auth/data/repositories/auth_repo_impl.dart
+
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 import 'package:fruits_hub/core/errors/failures.dart';
@@ -7,11 +7,11 @@ import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entites/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
+
 
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuthService firebaseAuthService;
-  // final GoogleSignIn _googleSignIn;
+ 
 
   AuthRepoImpl({ required this.firebaseAuthService});
 
@@ -54,6 +54,18 @@ class AuthRepoImpl implements AuthRepo {
     }
     
   }
+   @override
+  Future<Either<Failure, UserEntity>> loginWithGoogle() async {
+    try {
+      final userCredential = await firebaseAuthService.logInWithGoogle();
+      return Right(UserModel.fromFirebaseUser(userCredential));
+    } on CustomException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure(AppStrings.somethingWentWrong));
+    }
+ 
+  }
 
   @override
   Future<Either<Failure, UserEntity>> loginWithApple() {
@@ -68,9 +80,5 @@ class AuthRepoImpl implements AuthRepo {
     throw UnimplementedError();
   }
 
-  @override
-  Future<Either<Failure, UserEntity>> loginWithGoogle() {
-    // TODO: implement loginWithGoogle
-    throw UnimplementedError();
-  }
+ 
 }
