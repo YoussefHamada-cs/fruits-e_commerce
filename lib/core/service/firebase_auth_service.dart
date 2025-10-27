@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -94,6 +95,25 @@ class FirebaseAuthService {
       throw CustomException(AppStrings.somethingWentWrong);
     } catch (e) {
       log("Exception in FirebaseAuthService.googleLogIn: ${e.toString()}");
+
+      throw CustomException(AppStrings.somethingWentWrong);
+    }
+  }
+  Future<User> logInWithFacebook() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+      if (result.status == LoginStatus.success) {
+        final AccessToken accessToken = result.accessToken!;
+        final credential = FacebookAuthProvider.credential(accessToken.tokenString);
+        final userCredential = await FirebaseAuth.instance.signInWithCredential(
+          credential,
+        );
+        return userCredential.user!;
+      } else {
+        throw CustomException(AppStrings.somethingWentWrong);
+      }
+    } catch (e) {
+      log("Exception in FirebaseAuthService.facebookLogIn: ${e.toString()}");
 
       throw CustomException(AppStrings.somethingWentWrong);
     }
