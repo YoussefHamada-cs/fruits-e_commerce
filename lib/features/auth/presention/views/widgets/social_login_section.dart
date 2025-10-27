@@ -27,7 +27,9 @@ class SocialLoginSection extends StatelessWidget {
         ),
         SizedBox(height: 12),
         CustomSocialLoginButton(
-          onPressed: _onFacebookPressed,
+          onPressed:() {
+                context.read<LoginCubit>().loginWithFacebook(); 
+          },
           text: AppStrings.facebookLogin,
           imagePath: AppImages.facebookIcon,
         ),
@@ -41,7 +43,4 @@ class SocialLoginSection extends StatelessWidget {
     // تنفيذ تسجيل الدخول بـ Apple
   }
 
-  static void _onFacebookPressed() {
-    // تنفيذ تسجيل الدخول بـ Facebook
-  }
 }
