@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // تهيئة Hive
   await Hive.initFlutter();
   await Hive.openBox('appBox');
@@ -18,7 +19,7 @@ void main() async {
   Bloc.observer = AppBlocObserver();
   // تهيئة خدمة الشاشة التعريفية
   await OnboardingService().initialize();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const FruitsHub());
 }
 
