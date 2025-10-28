@@ -1,5 +1,6 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 import 'package:fruits_hub/core/errors/failures.dart';
 import 'package:fruits_hub/core/service/data_base_service.dart';
@@ -24,8 +25,9 @@ class AuthRepoImpl implements AuthRepo {
     String password,
     String name
   ) async {
+    User? user;
     try {
-      var user = await firebaseAuthService.createUserWithEmailAndPassword(
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -33,8 +35,14 @@ class AuthRepoImpl implements AuthRepo {
       await addData( user: userCreated);
       return Right(userCreated);
     } on CustomException catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       return Left( ServerFailure ( e.message));
     }catch(e){
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
        return Left( ServerFailure (AppStrings.somethingWentWrong));
     }
 
@@ -96,7 +104,7 @@ class AuthRepoImpl implements AuthRepo {
     await dataBaseService.addData(
       path: EndPoints.users,
       data: user.toMap(),
-      
+
     );
   }
 
