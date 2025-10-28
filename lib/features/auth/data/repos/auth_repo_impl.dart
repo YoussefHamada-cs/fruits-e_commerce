@@ -2,8 +2,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 import 'package:fruits_hub/core/errors/failures.dart';
+import 'package:fruits_hub/core/service/data_base_service.dart';
 import 'package:fruits_hub/core/service/firebase_auth_service.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
+import 'package:fruits_hub/core/utils/end_points.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entites/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
@@ -11,9 +13,8 @@ import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuthService firebaseAuthService;
- 
-
-  AuthRepoImpl({ required this.firebaseAuthService});
+ final DataBaseService  dataBaseService ;
+  AuthRepoImpl( { required this.firebaseAuthService, required this.dataBaseService});
 
 
 
@@ -28,7 +29,9 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         password: password,
       );
-      return Right(UserModel.fromFirebaseUser(user));
+      var userCreated= UserModel.fromFirebaseUser(user);
+      await addData( user: userCreated);
+      return Right(userCreated);
     } on CustomException catch (e) {
       return Left( ServerFailure ( e.message));
     }catch(e){
@@ -86,6 +89,15 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServerFailure(AppStrings.somethingWentWrong));
     }
    
+  }
+  
+  @override
+  Future addData({required UserEntity user}) async {
+    await dataBaseService.addData(
+      path: EndPoints.users,
+      data: user.toMap(),
+      
+    );
   }
 
  
