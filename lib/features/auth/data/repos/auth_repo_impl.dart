@@ -35,7 +35,12 @@ class AuthRepoImpl implements AuthRepo {
         email: user.email!,
         name: name,
       );
-      await addData(user: userEntity);
+      var ischeakExist= await dataBaseService.checkIsUserExists(path: EndPoints.users, documentId: userEntity.uid);
+      if(ischeakExist){
+        await getUserData(uId: userEntity.uid);
+      }else{
+        await addData(user: userEntity);
+      }
       return Right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -62,7 +67,14 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         password: password,
       );
-      return Right(UserModel.fromFirebaseUser(user));
+     var userEntity = await getUserData(uId: user.uid);
+     var ischeakExist= await dataBaseService.checkIsUserExists(path: EndPoints.users, documentId: userEntity.uid);
+      if(ischeakExist){
+        await getUserData(uId: userEntity.uid);
+      }else{
+        await addData(user: userEntity);
+      }
+      return Right(userEntity);
     } on CustomException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
@@ -76,7 +88,12 @@ class AuthRepoImpl implements AuthRepo {
     try {
       user = await firebaseAuthService.logInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user);
-      await addData(user: userEntity);
+      var ischeakExist= await dataBaseService.checkIsUserExists(path: EndPoints.users, documentId: userEntity.uid);
+      if(ischeakExist){
+        await getUserData(uId: userEntity.uid);
+      }else{
+        await addData(user: userEntity);
+      }
       return Right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -98,7 +115,12 @@ class AuthRepoImpl implements AuthRepo {
     try {
       user = await firebaseAuthService.logInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user);
-      await addData(user: userEntity);
+      var ischeakExist= await dataBaseService.checkIsUserExists(path: EndPoints.users, documentId: userEntity.uid);
+      if(ischeakExist){
+        await getUserData(uId: userEntity.uid);
+      }else{
+        await addData(user: userEntity);
+      }
       return Right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -111,6 +133,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future addData({required UserEntity user}) async {
-    await dataBaseService.addData(path: EndPoints.users, data: user.toMap());
+    await dataBaseService.addData(path: EndPoints.users, data: user.toMap(), documentId: user.uid);
+  }
+  
+  @override
+  Future<UserEntity> getUserData({required String uId}) async {
+   var userData = await dataBaseService.getData(path: EndPoints.users, documentId: uId);
+    return UserModel.fromJson(userData);
   }
 }
