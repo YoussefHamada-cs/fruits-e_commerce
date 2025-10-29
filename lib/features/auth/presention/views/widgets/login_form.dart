@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/helper/custom_show_snack_bar.dart';
+import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_indictor.dart';
@@ -8,6 +9,7 @@ import 'package:fruits_hub/core/widgets/custom_text_from_field.dart';
 import 'package:fruits_hub/core/widgets/password_field.dart';
 import 'package:fruits_hub/features/auth/presention/cubits/login/login_cubit.dart';
 import 'package:fruits_hub/features/auth/presention/views/widgets/forgot_password_button.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -61,6 +63,7 @@ class _LoginFormState extends State<LoginForm> {
           BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginSuccess) {
+                 context.pushNamed(AppRoutes.home);
                 customShowSnackBar(context, AppStrings.loginSuccess);
               } else if (state is LoginFailure) {
                 customShowSnackBar(context, state.message);

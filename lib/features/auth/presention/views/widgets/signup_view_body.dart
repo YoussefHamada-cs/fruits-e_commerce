@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/helper/custom_show_snack_bar.dart';
+import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:fruits_hub/features/auth/presention/cubits/create_user/create_user_cubit.dart';
 import 'package:fruits_hub/features/auth/presention/views/widgets/signup_form.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupViewBody extends StatelessWidget {
   const SignupViewBody({super.key});
@@ -13,7 +15,7 @@ class SignupViewBody extends StatelessWidget {
     return BlocConsumer<CreateUserCubit, CreateUserState>(
       listener: (context, state) {
         if (state is CreateUserSuccess) {
-          Navigator.of(context).pop();
+          context.pushNamed(AppRoutes.home);
           customShowSnackBar(context, AppStrings.accountCreatedSuccessfully);
         } else if (state is CreateUserFailure) {
           customShowSnackBar(context, state.message);
