@@ -22,7 +22,7 @@ class AppTheme {
         titleLarge: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
         titleMedium: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
         titleSmall: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.normal),
+        displayMedium: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
         displaySmall: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         bodyMedium: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
