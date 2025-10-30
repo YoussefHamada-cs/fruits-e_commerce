@@ -10,4 +10,8 @@ class AppImages {
   static const String googleIcon= 'assets/images/google_Icon.svg';
   static const String facebookIcon= 'assets/images/facebook_Icon.svg';
   static const String appleIcon= 'assets/images/apple_Icon.svg';
+  static const String profilePhoto = 'assets/images/profile_photo.png';
+  static const String notifIcon = 'assets/images/notif.svg';
+  static const String searchIcon = 'assets/images/search_icon.svg';
+  static const String searchFilter = 'assets/images/search_filter.svg';
 }
