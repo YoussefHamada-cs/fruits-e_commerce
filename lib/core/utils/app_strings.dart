@@ -47,4 +47,9 @@ class AppStrings {
   static const String emailAlreadyInUse = 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.';
   static const String weakPassword = 'الرقم السري ضعيف جداً.';
   static const String loginSuccess = 'تم تسجيل الدخول بنجاح.';
+    // ==================== Home ====================
+
+  static const String more = 'المزيد';
+  static const String bestSelling = 'الأكثر مبيعاً';
+
 }
