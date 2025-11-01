@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:fruits_hub/core/widgets/search_field.dart';
+import 'package:fruits_hub/features/home/presentation/views/widgets/featured_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -18,6 +19,8 @@ class HomeViewBody extends StatelessWidget {
                 CustomHomeAppBar(),
                 SizedBox(height: 16),
                 SearchField(),
+                SizedBox(height: 12),
+                FeaturedListView(),
               ],
             ),
           ),
