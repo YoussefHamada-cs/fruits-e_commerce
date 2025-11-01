@@ -14,4 +14,7 @@ class AppImages {
   static const String notifIcon = 'assets/images/notif.svg';
   static const String searchIcon = 'assets/images/search_icon.svg';
   static const String searchFilter = 'assets/images/search_filter.svg';
+  static const String watermelonTest = 'assets/images/watermelon_test.png';
+  static const String blueberry = 'assets/images/blueberry.png';
+  static const String plusIcon = 'assets/images/plus_icon.svg';
 }
