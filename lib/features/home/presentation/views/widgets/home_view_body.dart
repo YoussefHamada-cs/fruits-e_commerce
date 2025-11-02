@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/best_selling_grid_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:fruits_hub/core/widgets/search_field.dart';
+import 'package:fruits_hub/core/presentation/widgets/search_field.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/featured_list_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/header_best_selling.dart';
 

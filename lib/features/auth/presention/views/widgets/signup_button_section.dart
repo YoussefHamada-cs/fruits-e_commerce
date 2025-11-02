@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
-import 'package:fruits_hub/core/widgets/custom_button.dart';
+import 'package:fruits_hub/core/presentation/widgets/custom_button.dart';
 
 class SignupButtonSection extends StatelessWidget {
   final bool isLoading;
