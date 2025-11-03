@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/presentation/widgets/main_views/main_views.dart';
 import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/router/app_transitions.dart';
 import 'package:fruits_hub/features/auth/presention/views/login_view.dart';
@@ -11,78 +13,62 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    // ignore: unrelated_type_equality_checks
     initialLocation: AppRoutes.splash,
+
     routes: [
+      // ----------------------- Public routes (no bottom nav) -----------------------
       GoRoute(
         path: AppRoutes.splash,
         name: AppRoutes.splash,
-        pageBuilder: (context, state) => AppTransitions.size(
-          context: context,
-          state: state,
-          child: const SplashView(),
-       
-        ),
+        pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: const SplashView(), ),
       ),
       GoRoute(
         path: AppRoutes.onboarding,
         name: AppRoutes.onboarding,
-        pageBuilder: (context, state) => AppTransitions.slideFromLeft(
-          context: context,
-          state: state,
-          child: const OnBoardingView(),
-        ),
-       ),
-      GoRoute(
-        path: AppRoutes.login,
-        name: AppRoutes.login,
-        pageBuilder: (context, state) => AppTransitions.size(
-          context: context,
-          state: state,
-          child: const LoginView(),
-        ),
+        pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child:  OnBoardingView(), ),
       ),
-      // size
+    GoRoute( path: AppRoutes.login,
+     name: AppRoutes.login,
+      pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: const LoginView(), ), ),
       GoRoute(
         path: AppRoutes.signUp,
         name: AppRoutes.signUp,
-        pageBuilder: (context, state) => AppTransitions.size(
-          context: context,
-          state: state,
-          child: const SignupView(),
-        ),
+        pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: const SignupView(), ),
       ),
 
-      // GoRoute(
-      //   path: AppRoutes.forgotPassword,
-      //   name: AppRoutes.forgotPassword,
-      //   pageBuilder: (context, state) => AppTransitions.size(
-      //     context: context,
-      //     state: state,
-      //     child: BlocProvider(
-      //       create: (context) => sl<ForgotPasswordCubit>(),
-      //       child: const ForgotPasswordView(),
-      //     ),
-      //   ),
-      // ),
-      GoRoute(
-        path: AppRoutes.home,
-        name: AppRoutes.home,
-        pageBuilder: (context, state) => AppTransitions.slideFromRight(
-          context: context,
-          state: state,
-          child: HomeView(),
-        ),
+      // ----------------------- Authenticated routes (with bottom nav) -----------------------
+      ShellRoute(
+        builder: (context, state, child) => MainViews(child: child),
+        routes: [
+          GoRoute(
+            path: AppRoutes.home,
+            name: AppRoutes.home,
+            pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: HomeView(), ),
+          ),
+          GoRoute(
+            path: AppRoutes.cart,
+            name: AppRoutes.cart,
+            pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: const Scaffold(
+              body: Center(child: Text('Cart View')),
+             ) ),
+          ),
+          GoRoute(
+            path: AppRoutes.products,
+            name: AppRoutes.products,
+            pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: const Scaffold(
+              body: Center(child: Text('Category View')),
+             ) ),
+          ),
+          GoRoute(
+            path: AppRoutes.profile,
+            name: AppRoutes.profile,
+            pageBuilder: (context, state) => AppTransitions.size( context: context, state: state, child: const Scaffold(
+              body: Center(child: Text('Profile View')),
+            )),
+          ),
+        ],
       ),
-      // GoRoute(
-      //   path: AppRoutes.settings,
-      //   name: AppRoutes.settings,
-      //   pageBuilder: (context, state) => AppTransitions.slideFromRight(
-      //     context: context,
-      //     state: state,
-      //     child: SettingsView(),
-      //   ),
-      // ),
     ],
   );
 }
+
