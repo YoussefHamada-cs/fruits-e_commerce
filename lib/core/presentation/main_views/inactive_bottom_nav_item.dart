@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fruits_hub/core/presentation/widgets/main_views/bottom_nav_model.dart';
+import 'package:fruits_hub/core/presentation/main_views/bottom_nav_model.dart';
 import 'package:go_router/go_router.dart';
 
 class InactiveBottomNavItem extends StatelessWidget {

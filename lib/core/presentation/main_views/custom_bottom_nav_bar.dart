@@ -1,9 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/presentation/widgets/main_views/active_bottom_nav_item.dart';
-import 'package:fruits_hub/core/presentation/widgets/main_views/bottom_nav_model.dart';
-import 'package:fruits_hub/core/presentation/widgets/main_views/inactive_bottom_nav_item.dart';
+import 'package:fruits_hub/core/presentation/main_views/active_bottom_nav_item.dart';
+import 'package:fruits_hub/core/presentation/main_views/bottom_nav_model.dart';
+import 'package:fruits_hub/core/presentation/main_views/inactive_bottom_nav_item.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:go_router/go_router.dart';
 

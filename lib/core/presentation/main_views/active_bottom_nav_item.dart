@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruits_hub/core/presentation/widgets/main_views/bottom_nav_model.dart';
+import 'package:fruits_hub/core/presentation/main_views/bottom_nav_model.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 
 class BottomNavItem extends StatelessWidget {

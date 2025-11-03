@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/presentation/widgets/main_views/custom_bottom_nav_bar.dart';
+import 'package:fruits_hub/core/presentation/main_views/custom_bottom_nav_bar.dart';
 
 
 class MainViews extends StatefulWidget {
