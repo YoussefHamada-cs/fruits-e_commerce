@@ -5,6 +5,7 @@ class AppRoutes {
   static const String signUp = '/signUp';
   static const String forgotPassword = '/forgotPassword';
   static const String home = '/home';
+  static const String bestSelling = 'bestSelling';
   static const String cart = '/cart';
   static const String profile = '/profile';
   static const String products = '/products';

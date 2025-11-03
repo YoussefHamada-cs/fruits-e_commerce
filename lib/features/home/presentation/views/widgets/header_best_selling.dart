@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
+import 'package:go_router/go_router.dart';
 
 class HeaderBestSelling extends StatelessWidget {
   const HeaderBestSelling({super.key});
@@ -13,7 +15,9 @@ class HeaderBestSelling extends StatelessWidget {
       children: [
         Text(AppStrings.bestSelling, style: textTheme.bodyLarge),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed(AppRoutes.bestSelling);
+          },
           child: Text(
             AppStrings.more,
             style: textTheme.bodyMedium!.copyWith(
