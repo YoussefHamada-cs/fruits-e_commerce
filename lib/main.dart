@@ -14,7 +14,9 @@ void main() async {
    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // تهيئة Hive
   await Hive.initFlutter();
+//  Hive.registerAdapter(UserEntityAdapter());
   await Hive.openBox('appBox');
+  await Hive.openBox('userBox');
   setupGetIt();
   Bloc.observer = AppBlocObserver();
   // تهيئة خدمة الشاشة التعريفية

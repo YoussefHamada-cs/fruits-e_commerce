@@ -121,4 +121,8 @@ class FirebaseAuthService {
       throw CustomException(AppStrings.somethingWentWrong);
     }
   }
+  bool isLoggedIn() {
+FirebaseAuth auth = FirebaseAuth.instance;
+    return auth.currentUser != null;
+  }
 }

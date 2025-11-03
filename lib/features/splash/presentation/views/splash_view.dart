@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/router/app_routes.dart';
+import 'package:fruits_hub/core/service/firebase_auth_service.dart';
 import 'package:fruits_hub/features/onBording/data/on_bording_service.dart';
 import 'package:fruits_hub/features/splash/presentation/views/widgets/splash_view_body.dart';
 import 'package:go_router/go_router.dart';
@@ -30,9 +32,12 @@ class _SplashViewState extends State<SplashView> {
       await onboardingService.initialize();
 
       Future.delayed(splashDuration, () {
+    var user = FirebaseAuthService().isLoggedIn();
         if (!mounted) return;
-
-        if (onboardingService.onboardingCompleted) {
+       if (user) {
+          // المستخدم مسجل دخول → روح للصفحة الرئيسية
+          context.pushReplacementNamed(AppRoutes.home);
+        } else if (onboardingService.onboardingCompleted) {
           // المستخدم شاف الـ Onboarding قبل كده → روح للـ Login
           context.pushReplacementNamed(AppRoutes.login);
         } else {

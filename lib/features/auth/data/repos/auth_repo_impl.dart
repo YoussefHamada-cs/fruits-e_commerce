@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
@@ -9,6 +11,7 @@ import 'package:fruits_hub/core/utils/end_points.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entites/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuthService firebaseAuthService;
@@ -17,6 +20,7 @@ class AuthRepoImpl implements AuthRepo {
     required this.firebaseAuthService,
     required this.dataBaseService,
   });
+
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
@@ -68,6 +72,7 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
       );
      var userEntity = await getUserData(uId: user.uid);
+     saveUserData(user: userEntity);
      var ischeakExist= await dataBaseService.checkIsUserExists(path: EndPoints.users, documentId: userEntity.uid);
       if(ischeakExist){
         await getUserData(uId: userEntity.uid);
@@ -133,7 +138,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future addData({required UserEntity user}) async {
-    await dataBaseService.addData(path: EndPoints.users, data: user.toMap(), documentId: user.uid);
+    await dataBaseService.addData(path: EndPoints.users, data: UserModel.fromEntity(user).toMap(), documentId: user.uid);
   }
   
   @override
@@ -141,4 +146,17 @@ class AuthRepoImpl implements AuthRepo {
    var userData = await dataBaseService.getData(path: EndPoints.users, documentId: uId);
     return UserModel.fromJson(userData);
   }
+  
+  @override
+  Future saveUserData({required UserEntity user}) {
+    var json=jsonEncode(  UserModel.fromEntity(user).toMap());
+    return saveUserDataHive(user:json);
+  }
+  
+
+}
+final userBox = Hive.box('userBox');
+
+Future<void> saveUserDataHive({required String user}) async {
+  await userBox.put('user', user);
 }
