@@ -6,6 +6,7 @@ import 'package:fruits_hub/core/presentation/widgets/custom_app_bar.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
 import 'package:fruits_hub/features/auth/presention/cubits/create_user/create_user_cubit.dart';
 import 'package:fruits_hub/features/auth/presention/views/widgets/signup_view_body.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -13,7 +14,13 @@ class SignupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: AppStrings.signUp, context),
+      appBar: customAppBar(
+        title: AppStrings.signUp,
+        context,
+        onPressed: () {
+          context.pop();
+        },
+      ),
       body: BlocProvider(
         create: (context) => CreateUserCubit(getIt<AuthRepo>()),
         child: SignupViewBody(),
