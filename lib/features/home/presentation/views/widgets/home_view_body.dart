@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/features/home/presentation/views/widgets/best_selling_grid_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/cubits/products_cubit/products_cubit.dart';
+import 'package:fruits_hub/core/presentation/widgets/products_grid_view_bloc_builder.dart';
+
 import 'package:fruits_hub/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:fruits_hub/core/presentation/widgets/search_field.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/featured_list_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/widgets/header_best_selling.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
 
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+   @override
+  void initState() {
+    context.read<ProductsCubit>().getBestSellingroducts();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +44,7 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          BestSellingGridView(),
+          ProductsGridViewBlocBuilder(),
         ],
       ),
     );
