@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/cubits/products_cubit/products_cubit.dart';
 
 import 'package:fruits_hub/core/presentation/widgets/build_app_bar.dart';
+import 'package:fruits_hub/core/repos/product_repo.dart';
+import 'package:fruits_hub/core/service/get_it_sevice.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 
 import 'package:fruits_hub/features/home/presentation/views/widgets/best_selling_view_body.dart';
-
 
 class BestSellingView extends StatelessWidget {
   const BestSellingView({super.key});
@@ -13,10 +16,12 @@ class BestSellingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, title: AppStrings.bestSelling),
-      body: BestSellingViewBody(),
+      body: BlocProvider(
+        create: (context) =>ProductsCubit(
+              getIt<ProductRepo>()
+            ),
+        child: BestSellingViewBody(),
+      ),
     );
   }
-
- 
-
 }
