@@ -36,7 +36,7 @@ class _SplashViewState extends State<SplashView> {
         if (!mounted) return;
        if (user) {
           // المستخدم مسجل دخول → روح للصفحة الرئيسية
-          context.pushReplacementNamed(AppRoutes.login);
+          context.pushReplacementNamed(AppRoutes.home);
         } else if (onboardingService.onboardingCompleted) {
           // المستخدم شاف الـ Onboarding قبل كده → روح للـ Login
           context.pushReplacementNamed(AppRoutes.login);
