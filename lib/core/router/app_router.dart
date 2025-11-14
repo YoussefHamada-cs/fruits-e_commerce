@@ -7,6 +7,7 @@ import 'package:fruits_hub/features/auth/presention/views/signup_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/best_selling_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/home_view.dart';
 import 'package:fruits_hub/features/onBording/presention/views/onbording_view.dart';
+import 'package:fruits_hub/features/products/presentation/views/products_view.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -92,7 +93,7 @@ class AppRouter {
             pageBuilder: (context, state) => AppTransitions.size(
               context: context,
               state: state,
-              child: const Scaffold(body: Center(child: Text('Category View'))),
+              child: const ProductsView(),
             ),
           ),
           GoRoute(
