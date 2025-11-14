@@ -18,7 +18,7 @@ class CreateUserCubit extends Cubit<CreateUserState> {
         await authRepo.createUserWithEmailAndPassword(email, password, name);
     result.fold(
       (failure) => emit(
-       CreateUserFailure(message: failure.message!),
+       CreateUserFailure(message: failure.message),
       ),
       (userEntity) => emit(
         CreateUserSuccess(userEntity: userEntity),
