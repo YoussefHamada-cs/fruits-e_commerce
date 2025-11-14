@@ -1,4 +1,4 @@
 class EndPoints {
   static const String users = 'users';
-  static const String getProducts = 'products';
+  static const String getProducts = 'addproducts';
 }
