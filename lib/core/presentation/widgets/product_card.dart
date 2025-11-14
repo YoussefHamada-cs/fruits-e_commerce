@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fruits_hub/core/entities/product_entity.dart';
+import 'package:fruits_hub/core/presentation/widgets/custom_image_network.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
-
+  const ProductCard({super.key, required this.product});
+  final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -22,11 +24,19 @@ class ProductCard extends StatelessWidget {
               onTap: () {},
             ),
           ),
-          Positioned(top: 24, child: Image.asset(AppImages.watermelonTest)),
+          Positioned(
+            top: 24,
+            left: 0,
+            right: 0,
+            child: CustomImageNetwork(imageUrl: product.imageUrl),
+          ),
           Positioned(
             right: 4,
             bottom: 36,
-            child: Text('بطيخ', style: TextStyle(fontWeight: FontWeight.bold)),
+            child: Text(
+              product.name,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           Positioned(
             right: 4,
@@ -34,7 +44,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  '200 جنيه',
+                  '${product.price} جنيه',
                   style: textTheme.bodyMedium!.copyWith(
                     color: AppColors.colorPrice,
                   ),
