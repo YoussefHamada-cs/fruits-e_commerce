@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,8 +15,8 @@ class CustomImageNetwork extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: imageUrl != null && imageUrl!.isNotEmpty
-          ? Image.network(
-              imageUrl!,
+          ? CachedNetworkImage(
+           imageUrl:imageUrl!,
               height: 100,
             )
           :  Container(
