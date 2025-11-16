@@ -27,5 +27,5 @@ class AppImages {
 
   static const String userIcon = 'assets/images/vuesax/outline/user.svg';
   static const String userActive = 'assets/images/vuesax/bold/user.svg';
-
+       static const String classification= 'assets/images/classification.svg';
 }
