@@ -5,14 +5,26 @@ import 'package:go_router/go_router.dart';
 
 class InactiveBottomNavItem extends StatelessWidget {
   final BottomNavModel item;
-  const InactiveBottomNavItem({super.key, required this.item});
+  final int index;
+  final StatefulNavigationShell shell;
+
+  const InactiveBottomNavItem({
+    super.key,
+    required this.item,
+    required this.index,
+    required this.shell,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => context.pushNamed(item.route),
-      child: SvgPicture.asset(item.iconPathInactive, width: 16, height: 16),
+      onTap: () => shell.goBranch(index), 
+      child: Container(
+        color:  Colors.transparent,
+        width: 60,
+        child: SvgPicture.asset(item.iconPathInactive, width: 16, height: 16),
+      ),
     );
   }
 }

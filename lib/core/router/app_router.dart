@@ -53,60 +53,92 @@ class AppRouter {
           child: const SignupView(),
         ),
       ),
+// ----------------------- Authenticated routes (with bottom nav) -----------------------
+StatefulShellRoute.indexedStack(
+  builder: (context, state, navigationShell) =>
+      MainViews(shell: navigationShell),
 
-      // ----------------------- Authenticated routes (with bottom nav) -----------------------
-      ShellRoute(
-        builder: (context, state, child) => MainViews(child: child),
-        routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            name: AppRoutes.home,
-            pageBuilder: (context, state) => AppTransitions.size(
-              context: context,
-              state: state,
-              child: HomeView(),
-            ),
-            routes: [
-              GoRoute(
-                path: AppRoutes.bestSelling,
-                name: AppRoutes.bestSelling,
-                pageBuilder: (context, state) => AppTransitions.size(
-                  context: context,
-                  state: state,
-                  child: const BestSellingView(),
-                ),
+  branches: [
+
+    // ---------------- HOME ----------------
+    StatefulShellBranch(
+      routes: [
+        GoRoute(
+          path: AppRoutes.home,
+          name: AppRoutes.home,
+          pageBuilder: (context, state) => AppTransitions.size(
+            context: context,
+            state: state,
+            child: HomeView(),
+          ),
+          routes: [
+            GoRoute(
+              path: AppRoutes.bestSelling,
+              name: AppRoutes.bestSelling,
+              pageBuilder: (context, state) => AppTransitions.size(
+                context: context,
+                state: state,
+                child: const BestSellingView(),
               ),
-            ],
+            ),
+          ],
+        ),
+      ],
+    ),
+
+   
+  
+
+    // ---------------- PRODUCTS ----------------
+    StatefulShellBranch(
+      routes: [
+        GoRoute(
+          path: AppRoutes.products,
+          name: AppRoutes.products,
+          pageBuilder: (context, state) => AppTransitions.size(
+            context: context,
+            state: state,
+            child: const ProductsView(),
           ),
-          GoRoute(
-            path: AppRoutes.cart,
-            name: AppRoutes.cart,
-            pageBuilder: (context, state) => AppTransitions.size(
-              context: context,
-              state: state,
-              child: const Scaffold(body: Center(child: Text('Cart View'))),
+        ),
+      ],
+    ),
+     // ---------------- CART ----------------
+      StatefulShellBranch(
+      routes: [
+        GoRoute(
+          path: AppRoutes.cart,
+          name: AppRoutes.cart,
+          pageBuilder: (context, state) => AppTransitions.size(
+            context: context,
+            state: state,
+            child: const Scaffold(
+              body: Center(child: Text('Cart View')),
             ),
           ),
-          GoRoute(
-            path: AppRoutes.products,
-            name: AppRoutes.products,
-            pageBuilder: (context, state) => AppTransitions.size(
-              context: context,
-              state: state,
-              child: const ProductsView(),
+        ),
+      ],
+    ),
+
+    // ---------------- PROFILE ----------------
+    StatefulShellBranch(
+      routes: [
+        GoRoute(
+          path: AppRoutes.profile,
+          name: AppRoutes.profile,
+          pageBuilder: (context, state) => AppTransitions.size(
+            context: context,
+            state: state,
+            child: const Scaffold(
+              body: Center(child: Text('Profile View')),
             ),
           ),
-          GoRoute(
-            path: AppRoutes.profile,
-            name: AppRoutes.profile,
-            pageBuilder: (context, state) => AppTransitions.size(
-              context: context,
-              state: state,
-              child: const Scaffold(body: Center(child: Text('Profile View'))),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
+    ),
+  ],
+),
+
     ],
   );
 }
