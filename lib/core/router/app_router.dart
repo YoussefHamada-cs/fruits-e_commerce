@@ -4,6 +4,7 @@ import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/core/router/app_transitions.dart';
 import 'package:fruits_hub/features/auth/presention/views/login_view.dart';
 import 'package:fruits_hub/features/auth/presention/views/signup_view.dart';
+import 'package:fruits_hub/features/cart/presentation/views/cart_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/best_selling_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/home_view.dart';
 import 'package:fruits_hub/features/onBording/presention/views/onbording_view.dart';
@@ -112,9 +113,7 @@ StatefulShellRoute.indexedStack(
           pageBuilder: (context, state) => AppTransitions.size(
             context: context,
             state: state,
-            child: const Scaffold(
-              body: Center(child: Text('Cart View')),
-            ),
+            child:CartView(),
           ),
         ),
       ],

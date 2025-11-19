@@ -13,6 +13,7 @@ class AppColors {
   static const Color borderTextFormField = Color(0xFFE6E9EA);
   static const Color textSecondary = Color(0xFF949d9e);
   static const Color backgroundCard = Color(0xFFF3F5F7);
+  static const Color colorDivider =  Color(0xFFF1F1F5);
   static const Color colorPrice = Color(0xFFf4a91f);
   static const Color colorUnitPrice = Color(0xFFf8c76d);
   static const Color black = Colors.black;

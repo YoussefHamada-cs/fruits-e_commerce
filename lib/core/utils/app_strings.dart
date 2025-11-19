@@ -57,4 +57,6 @@ class AppStrings {
   static const String bestSelling = 'الأكثر مبيعاً';
   // ==================== products ====================
   static const String products = 'المنتجات';
+  // ==================== cart ====================
+  static const String cart = 'السلة';
 }

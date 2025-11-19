@@ -21,11 +21,12 @@ class AppImages {
   static const String homeIcon = 'assets/images/vuesax/outline/home.svg';
   static const String homeActive = 'assets/images/vuesax/bold/home.svg';
   static const String productsIcon = 'assets/images/vuesax/outline/products.svg';
- static const String productsActive = 'assets/images/vuesax/bold/products.svg';
+  static const String productsActive = 'assets/images/vuesax/bold/products.svg';
   static const String cartIcon = 'assets/images/vuesax/outline/shopping-cart.svg';
   static const String cartActive = 'assets/images/vuesax/bold/shopping-cart.svg';
 
   static const String userIcon = 'assets/images/vuesax/outline/user.svg';
   static const String userActive = 'assets/images/vuesax/bold/user.svg';
-       static const String classification= 'assets/images/classification.svg';
+  static const String classification= 'assets/images/classification.svg';
+  static const String trash = 'assets/images/trash.svg';
 }
