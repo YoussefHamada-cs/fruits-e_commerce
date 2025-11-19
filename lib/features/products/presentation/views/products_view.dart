@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/cubits/products_cubit/products_cubit.dart';
 import 'package:fruits_hub/core/presentation/widgets/notifiction_icon.dart';
+import 'package:fruits_hub/core/repos/product_repo.dart';
+import 'package:fruits_hub/core/service/get_it_sevice.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
 import 'package:fruits_hub/features/products/presentation/views/widgets/products_view_body.dart';
 
@@ -23,7 +27,10 @@ class ProductsView extends StatelessWidget {
           SizedBox(width: 16),
         ],
       ),
-      body: ProductsViewBody(),
+      body: BlocProvider(
+        create: (context) => ProductsCubit(getIt<ProductRepo>()),
+        child: ProductsViewBody(),
+      ),
     );
   }
 }
