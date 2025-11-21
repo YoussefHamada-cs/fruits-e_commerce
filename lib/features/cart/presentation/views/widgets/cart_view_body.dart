@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/presentation/widgets/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/features/cart/presentation/views/cubits/cart_cubit/cart_cubit.dart';
 import 'package:fruits_hub/features/cart/presentation/views/widgets/cart_header.dart';
 import 'package:fruits_hub/features/cart/presentation/views/widgets/cart_list_view.dart';
+import 'package:fruits_hub/features/cart/presentation/views/widgets/custom_cart_button.dart';
 import 'package:fruits_hub/features/cart/presentation/views/widgets/custom_divider.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_app_bar.dart';
 import 'package:fruits_hub/core/utils/app_strings.dart';
@@ -34,16 +36,26 @@ class CartViewBody extends StatelessWidget {
                 ],
               ),
             ),
-            SliverToBoxAdapter(child: const CustomDivider()),
-            SliverFillRemaining(child: CartListView()),
-            SliverToBoxAdapter(child: const CustomDivider()),
+            SliverToBoxAdapter(
+              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                  ? const SizedBox()
+                  : const CustomDivider(),
+            ),
+            SliverFillRemaining(child: CartListView(cartList:context.watch<CartCubit>().cartEntity.cartItems )),
+          
+            SliverToBoxAdapter(
+              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                  ? const SizedBox()
+                  : const CustomDivider(),
+            ),
           ],
         ),
         Positioned(
           left: 16,
           right: 16,
           bottom: MediaQuery.sizeOf(context).height * .07,
-          child: CustomButton(text: ' الدفع  120 جنيه', onPressed: () {}),
+          // context.watch<CartCubit>().cartEntity.calculateTotalPrice() لما تضيف watch ازم تخلي ال widget لي واحده عشان watch بتعمل rebuild للصف كله او لي widget الي هي فيه كله 
+          child: CustomCartButton(),
         ),
       ],
     );
