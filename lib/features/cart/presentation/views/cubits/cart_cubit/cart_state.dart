@@ -5,4 +5,4 @@ sealed class CartState {}
 
 final class CartInitial extends CartState {}
 final class CartAdded extends CartState {}
-final class CartRemove extends CartState {}
+final class CartRemoved extends CartState {}
