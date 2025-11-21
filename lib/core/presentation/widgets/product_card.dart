@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub/core/entities/product_entity.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_image_network.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
+import 'package:fruits_hub/features/cart/presentation/views/cubits/cart_cubit/cart_cubit.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
@@ -61,7 +63,16 @@ class ProductCard extends StatelessWidget {
           Positioned(
             left: 4,
             bottom: 4,
-            child: SvgPicture.asset(AppImages.plusIcon, height: 30, width: 30),
+            child: GestureDetector(
+              onTap: () {
+                context.read<CartCubit>().addProductItem(product);
+              },
+              child: SvgPicture.asset(
+                AppImages.plusIcon,
+                height: 30,
+                width: 30,
+              ),
+            ),
           ),
         ],
       ),
