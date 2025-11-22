@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/features/checkout/presentation/views/widgets/address_section.dart';
+import 'package:fruits_hub/features/checkout/presentation/views/widgets/payment_section.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/shipping_section.dart';
-
 
 class CheckoutStepsPageView extends StatelessWidget {
   final PageController controller;
@@ -28,9 +29,9 @@ class CheckoutStepsPageView extends StatelessWidget {
   List<Widget> getPages() {
     return [
       ShippingSection(),
-      Center(child: Text("العنوان", style: TextStyle(fontSize: 20))),
-      Center(child: Text("الدفع", style: TextStyle(fontSize: 20))),
-      Center(child: Text("المراجعة", style: TextStyle(fontSize: 20))),
+      AddressSection(),
+      PaymentSection(),
+     
     ];
   }
 }
