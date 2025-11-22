@@ -48,7 +48,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            CheckoutSteps(currentStepIndex: currentStep),
+            CheckoutSteps(currentStepIndex: currentStep, pageController: pageController,),
 
             CheckoutStepsPageView(controller: pageController),
 
