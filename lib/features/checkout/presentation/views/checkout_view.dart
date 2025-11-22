@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_app_bar.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key});
@@ -19,7 +20,9 @@ class _CheckoutViewState extends State<CheckoutView> {
       appBar: customAppBar(
         context,
         title: getSteps()[currentStep],
-        onPressed: () {},
+        onPressed: () {
+          context.pop();
+        },
       ),
       body: CheckoutViewBody(
         onStepChanged: (index) {
