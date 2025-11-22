@@ -27,10 +27,12 @@ class ShippingItem extends StatelessWidget {
         duration: Duration(milliseconds: 300),
         height: 81,
         decoration: BoxDecoration(
-          color: Color(0x33D9D9D9),
+          color: AppColors.colorContainerPayment,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(
-            color: isSelected ? AppColors.green : Color(0x33D9D9D9),
+            color: isSelected
+                ? AppColors.green
+                : AppColors.colorContainerPayment,
             width: 1,
           ),
         ),
