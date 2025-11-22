@@ -31,7 +31,12 @@ class AppStrings {
   static const String appleLogin = 'تسجيل الدخول بواسطة آبل';
   static const String fullNameError = 'من فضلك ادخل الاسم كامل';
   static const String emailError = 'من فضلك ادخل البريد الالكتروني';
+   static const String addressError = 'من فضلك ادخل العنوان';
+  static const String phoneNumberError = 'من فضلك ادخل رقم الهاتف';
+  static const String cityError = 'من فضلك ادخل المدينة';
+  static const String buildingNumberError = 'من فضلك ادخل رقم الشقة';
   static const String passwordError = 'من فضلك ادخل كلمة المرور';
+  static const String confirmPasswordError = 'من فضلك ادخل تأكيد كلمة المرور';
   static const String alreadyHaveAccount = ' تمتلك حساب بالفعل؟ ';
   static const String termsAndConditions =
       'من خلال إنشاء حساب ، فإنك توافق على';
@@ -59,4 +64,9 @@ class AppStrings {
   static const String products = 'المنتجات';
   // ==================== cart ====================
   static const String cart = 'السلة';
+  static const String address = 'العنوان';
+  static const String phoneNumber = 'رقم الهاتف';
+  static const String city = 'المدينة';
+  static const String buildingNumber = 'رقم الشقة';
+  static const String saveAddress =' حفظ العنوان';
 }
