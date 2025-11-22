@@ -5,7 +5,7 @@ import 'package:fruits_hub/core/utils/app_colors.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.controller,
+   this.controller,
     required this.hintText,
     required this.validator,
     this.onSaved,
@@ -15,7 +15,7 @@ class CustomTextFormField extends StatelessWidget {
     this.inputFormatters,
   });
   final void Function(String?)? onSaved;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String hintText;
   final String? Function(String?) validator;
   final TextInputType keyboardType;
