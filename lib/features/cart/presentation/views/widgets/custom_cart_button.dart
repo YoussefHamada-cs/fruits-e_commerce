@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/helper/custom_show_snack_bar.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_button.dart';
 import 'package:fruits_hub/core/router/app_routes.dart';
 import 'package:fruits_hub/features/cart/presentation/views/cubits/cart_cubit/cart_cubit.dart';
@@ -17,7 +18,12 @@ class CustomCartButton extends StatelessWidget {
           text:
               ' الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',
           onPressed: () {
-            context.pushNamed(AppRoutes.checkout);
+            if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
+              context.pushNamed(AppRoutes.checkout, extra: context.read<CartCubit>().cartEntity.cartItems);
+
+            } else {
+              customShowSnackBar(context, 'السلة فارغة');
+            }
           },
         );
       },

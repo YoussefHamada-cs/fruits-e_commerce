@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_app_bar.dart';
+import 'package:fruits_hub/features/cart/domain/entites/car_item_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:go_router/go_router.dart';
 
 class CheckoutView extends StatefulWidget {
-  const CheckoutView({super.key});
-
+  const CheckoutView({super.key, required this.cartItems});
+final List<CartItemEntity> cartItems;
   @override
   State<CheckoutView> createState() => _CheckoutViewState();
 }
