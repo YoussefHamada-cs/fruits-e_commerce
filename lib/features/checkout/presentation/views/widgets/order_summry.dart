@@ -1,18 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
+import 'package:fruits_hub/features/checkout/domain/entites/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/custom_contaner_payment.dart';
+import 'package:provider/provider.dart';
 
 class OrderSummry extends StatelessWidget {
-  const OrderSummry({
-    super.key,
-    
-  });
-
+  const OrderSummry({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;  
+    final textTheme = Theme.of(context).textTheme;
     return CustomContanerPayment(
       child: Column(
         children: [
@@ -27,7 +24,7 @@ class OrderSummry extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '150 جنيه',
+                ' ${context.read<OrderEntity>().cartEntity.calculateTotalPrice()} جنيه',
                 style: textTheme.bodyLarge!.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
@@ -61,7 +58,10 @@ class OrderSummry extends StatelessWidget {
             children: [
               Text('الكلي:', style: textTheme.titleSmall),
               const Spacer(),
-              Text('200 جنيه', style: textTheme.titleSmall),
+              Text(
+                ' ${context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 50} جنيه',
+                style: textTheme.titleSmall,
+              ),
             ],
           ),
         ],
