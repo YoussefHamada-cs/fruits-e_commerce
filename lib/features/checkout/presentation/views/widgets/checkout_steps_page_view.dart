@@ -21,7 +21,7 @@ final ValueListenable<AutovalidateMode> valueListenable;
         children: [
           ShippingSection(),
           AddressSection(formKey: formKey, valueListenable: valueListenable,),
-          const PaymentSection(),
+          PaymentSection(pageController: controller,),
         ],
       ),
     );

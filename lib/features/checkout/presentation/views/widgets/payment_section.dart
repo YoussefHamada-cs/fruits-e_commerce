@@ -3,8 +3,8 @@ import 'package:fruits_hub/features/checkout/presentation/views/widgets/address_
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/order_summry.dart';
 
 class PaymentSection extends StatelessWidget {
-  const PaymentSection({super.key});
-
+  const PaymentSection({super.key, required this.pageController});
+final PageController pageController;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -17,7 +17,7 @@ class PaymentSection extends StatelessWidget {
         OrderSummry(),
 
         SizedBox(height: 16),
-        AddressCommuniction(),
+        AddressCommuniction(pageController: pageController,),
       ],
     );
   }
