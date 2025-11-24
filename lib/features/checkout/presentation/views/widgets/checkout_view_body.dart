@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/helper/custom_show_snack_bar.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_button.dart';
+import 'package:fruits_hub/features/checkout/domain/entites/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
   final ValueChanged<int>? onStepChanged;
@@ -16,21 +19,15 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
   int currentStep = 0;
 
+
   @override
   void initState() {
     super.initState();
     pageController = PageController();
-
-    pageController.addListener(() {
-      final index = pageController.page!.toInt();
-
-      if (currentStep != index) {
-        setState(() {
-          currentStep = index;
-        });
-
-        widget.onStepChanged?.call(index);
-      }
+      pageController.addListener(() {
+      setState(() {
+        currentStep = pageController.page!.toInt();
+      });
     });
   }
 
@@ -38,6 +35,12 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   void dispose() {
     pageController.dispose();
     super.dispose();
+  }
+
+  
+
+  String _getButtonText() {
+    return currentStep == 2 ? 'الدفع عبر PayPal' : 'التالي';
   }
 
   @override
@@ -48,37 +51,35 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            CheckoutSteps(currentStepIndex: currentStep, pageController: pageController,),
+            CheckoutSteps(
+              currentStepIndex: currentStep,
+              pageController: pageController,
+            ),
+            const SizedBox(height: 24),
 
-            CheckoutStepsPageView(controller: pageController),
-
-            CustomButton(
-              text: getTextbutton(currentStep),
-              onPressed: () {
-                pageController.nextPage(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.ease,
-                );
-              },
+            CheckoutStepsPageView(
+              controller: pageController,
+             
+              
             ),
 
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
+
+            CustomButton(text: _getButtonText(), onPressed: () {
+              if (context.read<OrderEntity>().isPaymentCash != null) {
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }else{
+      customShowSnackBar(context, 'الرجاء اختيار طريقة الدفع');
+    }
+            },),
+
+            const SizedBox(height: 32),
           ],
         ),
       ),
     );
-  }
-
-  String getTextbutton(int currentStepIndex) {
-    switch (currentStepIndex) {
-      case 0:
-        return 'التالي';
-      case 1:
-        return 'التالي';
-      case 2:
-        return 'الدفع عبر paypal';
-      default:
-        return 'التالي';
-    }
   }
 }

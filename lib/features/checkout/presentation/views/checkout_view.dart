@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/presentation/widgets/custom_app_bar.dart';
-import 'package:fruits_hub/features/cart/domain/entites/car_item_entity.dart';
+import 'package:fruits_hub/features/cart/domain/entites/cart_entity.dart';
+import 'package:fruits_hub/features/checkout/domain/entites/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:fruits_hub/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutView extends StatefulWidget {
-  const CheckoutView({super.key, required this.cartItems});
-final List<CartItemEntity> cartItems;
+  const CheckoutView({super.key, required this.cartEntity});
+  final CartEntity cartEntity;
   @override
   State<CheckoutView> createState() => _CheckoutViewState();
 }
@@ -25,12 +27,15 @@ class _CheckoutViewState extends State<CheckoutView> {
           context.pop();
         },
       ),
-      body: CheckoutViewBody(
-        onStepChanged: (index) {
-          setState(() {
-            currentStep = index;
-          });
-        },
+      body: Provider.value(
+        value: OrderEntity(cartEntity: widget.cartEntity),
+        child: CheckoutViewBody(
+          onStepChanged: (index) {
+            setState(() {
+              currentStep = index;
+            });
+          },
+        ),
       ),
     );
   }

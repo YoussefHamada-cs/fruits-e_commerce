@@ -5,33 +5,22 @@ import 'package:fruits_hub/features/checkout/presentation/views/widgets/shipping
 
 class CheckoutStepsPageView extends StatelessWidget {
   final PageController controller;
-  final ValueChanged<int>? onStepChanged;
 
-  const CheckoutStepsPageView({
-    super.key,
-    required this.controller,
-    this.onStepChanged,
-  });
+  const CheckoutStepsPageView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: PageView.builder(
+      child: PageView(
         controller: controller,
-        physics: NeverScrollableScrollPhysics(),
-        onPageChanged: (index) => onStepChanged?.call(index),
-        itemCount: getPages().length,
-        itemBuilder: (context, index) => getPages()[index],
+        physics: const NeverScrollableScrollPhysics(),
+
+        children: [
+          ShippingSection(),
+          const AddressSection(),
+          const PaymentSection(),
+        ],
       ),
     );
-  }
-
-  List<Widget> getPages() {
-    return [
-      ShippingSection(),
-      AddressSection(),
-      PaymentSection(),
-     
-    ];
   }
 }
