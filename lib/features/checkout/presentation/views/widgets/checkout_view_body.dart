@@ -16,15 +16,18 @@ class CheckoutViewBody extends StatefulWidget {
 }
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final ValueNotifier<AutovalidateMode> valueListenable = ValueNotifier(
+    AutovalidateMode.disabled,
+  );
   late PageController pageController;
   int currentStep = 0;
-
 
   @override
   void initState() {
     super.initState();
     pageController = PageController();
-      pageController.addListener(() {
+    pageController.addListener(() {
       setState(() {
         currentStep = pageController.page!.toInt();
       });
@@ -36,8 +39,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     pageController.dispose();
     super.dispose();
   }
-
-  
 
   String _getButtonText() {
     return currentStep == 2 ? 'الدفع عبر PayPal' : 'التالي';
@@ -59,27 +60,53 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
 
             CheckoutStepsPageView(
               controller: pageController,
-             
-              
+              formKey: formKey,
+              valueListenable: valueListenable,
             ),
 
             const SizedBox(height: 32),
 
-            CustomButton(text: _getButtonText(), onPressed: () {
-              if (context.read<OrderEntity>().isPaymentCash != null) {
-      pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }else{
-      customShowSnackBar(context, 'الرجاء اختيار طريقة الدفع');
-    }
-            },),
+            CustomButton(
+              text: _getButtonText(),
+              onPressed: () {
+                if (currentStep == 0) {
+                  _handleShippingSectionValidation(context);
+                }
+                if (currentStep == 1) {
+                  _handleAddressSectionValidation();
+                }
+              },
+            ),
 
             const SizedBox(height: 32),
           ],
         ),
       ),
     );
+  }
+
+  void _handleShippingSectionValidation(BuildContext context) {
+    if (context.read<OrderEntity>().isPaymentCash != null) {
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      customShowSnackBar(context, 'الرجاء اختيار طريقة الدفع');
+    }
+  }
+
+  void _handleAddressSectionValidation() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      setState(() {
+        valueListenable.value = AutovalidateMode.always;
+      });
+    }
   }
 }

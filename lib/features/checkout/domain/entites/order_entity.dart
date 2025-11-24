@@ -4,11 +4,11 @@ import 'package:fruits_hub/features/checkout/domain/entites/shipping_address_ent
 class OrderEntity {
   final CartEntity cartEntity;
   bool? isPaymentCash;
-  final ShippingAddressEntity? shippingAddress;
+  ShippingAddressEntity shippingAddress;
 
   OrderEntity({
     required this.cartEntity,
     this.isPaymentCash,
-    this.shippingAddress,
+    required this.shippingAddress,
   });
 }
