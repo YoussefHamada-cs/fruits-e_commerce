@@ -3,6 +3,7 @@ import 'package:fruits_hub/features/checkout/domain/entites/shipping_address_ent
 
 class OrderEntity {
   final CartEntity cartEntity;
+  final String uid;
   bool? isPaymentCash;
   ShippingAddressEntity shippingAddress;
 
@@ -10,5 +11,6 @@ class OrderEntity {
     required this.cartEntity,
     this.isPaymentCash,
     required this.shippingAddress,
+    required this.uid,
   });
 }
